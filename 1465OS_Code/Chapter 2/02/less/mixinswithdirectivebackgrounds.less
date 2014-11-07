@@ -1,0 +1,39 @@
+/* mixins */
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow:    @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+.border-radius(@radius: 10px)
+{
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.center-content
+{
+margin: 0 auto;
+width: @basic-width;
+}
+.backgroundgradient(@deg: 45deg; @start-color: green; @between-color:yellow; @end-color: red; @between:50%) {
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(@deg, @start-color, @between-color @between, @end-color); // Safari 5.1-6, Chrome 10+
+    background-image: -moz-linear-gradient(@deg, @start-color, @between-color @between, @end-color);
+    background-image: linear-gradient(@deg, @start-color, @between-color @between, @end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+}
